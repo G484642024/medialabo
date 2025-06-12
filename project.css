@@ -1,0 +1,21 @@
+h1 {
+    background-color: burlywood;
+}
+h2 {
+    background-color: rgb(2, 125, 84);
+    padding: 0px 0px 0px 10px;
+}
+
+ul {
+    background-color: bisque;
+    margin: 0;
+}
+
+div#result {
+    display: grid;
+    margin-bottom: 20px;
+}
+
+div#result > div {
+    padding: 3px 3px 20px 10px;
+}
