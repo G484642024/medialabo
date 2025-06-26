@@ -3,40 +3,53 @@ let kotae = Math.floor(Math.random()*10) + 1;
 console.log('答え（デバッグ用）: ' + kotae);
 
 // 入力回数（予想回数）
-let kaisu = 0;
+let kaisu = 1;
 let seikai = 0;
 
-// 予想を4回実行する
-// 将来以下の hantei(); の4回の呼び出しを全て削除する
-// 代わりにここでは，ボタンを押したら hantei() を呼び出すイベント処理をする
-hantei();
-hantei();
-hantei();
-hantei();
-
-// ボタンを押した後の処理をする関数 hantei() の定義
+  // ボタンを押した後の処理をする関数 hantei() の定義
 function hantei() {
+  let k = document.querySelector('span#kaisu');
+  k.textContent = kaisu;
 
-  kaisu = kaisu + 1;
+  let yoso1 = document.querySelector('input[name="kaitou"]');
+  let yoso = Number(yoso1.value);
+
+  let r = document.querySelector('span#answer');
+  r.textContent = yoso;
   // 将来ここでは 4 ではなくテキストボックスに指定された数値を yoso に代入する
-  let yoso = 4;
 
-  if (kaisu >= 4 || seikai >= 1) {
-    console.log('答えは'+kotae+'でした.すでにゲームは終わっています')
+  if (kaisu > 4 || seikai >= 1) {
+
+    let r = document.querySelector('p#result');
+    r.textContent ='答えは'+kotae+'でした.すでにゲームは終わっています'
+
   } else {
-    console.log(kaisu+'回数目の予想:'+yoso);
+
+    kaisu = kaisu + 1;
 
   if (yoso === kotae) {
-    console.log('正解です.おめでとう!');
+
+    let r = document.querySelector('p#result');
+    r.textContent ='正解です.おめでとう!'
     seikai = seikai + 1;
+
   } else if (yoso > kotae) {
-    console.log('まちがい.答えはもっと小さいですよ');
+
+    let r = document.querySelector('p#result');
+    r.textContent ='まちがい.答えはもっと小さいですよ';
+
   } else {
-    console.log('まちがい.答えはもっと大きいですよ');
-  }
+
+    let r = document.querySelector('p#result');
+    r.textContent ='まちがい.答えはもっと大きいですよ';
+
   }
 
+  }
   // 課題3-1: 正解判定する
   // kotae と yoso が一致するかどうか調べて結果を出力
   // 課題3-1における出力先はコンソール
 }
+
+let b = document.querySelector('button#answer');
+b.addEventListener('click',hantei);
