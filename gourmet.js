@@ -24,94 +24,82 @@ function print(data) {
 
 // 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
-  let d = document.createElement('div');
-  d.setAttribute('id','result');  
-  let div = document.querySelector('div'); 
-  div.insertAdjacentElement('afterend',d); 
+  let num = document.querySelectorAll('div#result');
 
-  let u = document.createElement('ul'); 
-  d.insertAdjacentElement('beforeend',u);
+  for (let n of num) {
+    let d = document.querySelector('div');
+    d.remove();
+  }
 
-  let h2 = document.createElement('h2');
-  u.insertAdjacentElement('beforebegin',h2);
-  h2.textContent = data.results.shop[0].name;
+  let resc = data.results.shop.length
+  let h = document.querySelector('h2#result');
+  h.textContent = '検索結果'+resc+'件';
 
-  let l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l); 
-  l.textContent = 'アクセス:'+data.results.shop[0].access;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l); 
-  l.textContent = '住所:'+data.results.shop[0].address;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '予算:'+data.results.shop[0].budget.name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'キャッチコピー:'+data.results.shop[0].catch;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'ジャンル:'+data.results.shop[0].genre.name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '営業時間:'+data.results.shop[0].open;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '最寄駅:'+data.results.shop[0].station_name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'サブジャンル:'+data.results.shop[0].sub_genre.name;
+  let com = data.results.shop;
+  for (let n of com) {
+    let d = document.createElement('div');
+    d.setAttribute('id','result');  
+    let h = document.querySelector('h2'); 
+    h.insertAdjacentElement('afterend',d);
+    
+    u = document.createElement('ul'); 
+    d.insertAdjacentElement('beforeend',u);
 
-  d = document.createElement('div');
-  d.setAttribute('id','result');  
-  div = document.querySelector('div'); 
-  div.insertAdjacentElement('afterend',d); 
+    let h2 = document.createElement('h2');
+    u.insertAdjacentElement('beforebegin',h2);
+    h2.textContent = n.name;
 
-  u = document.createElement('ul'); 
-  d.insertAdjacentElement('beforeend',u);
-
-  h2 = document.createElement('h2');
-  u.insertAdjacentElement('beforebegin',h2);
-  h2.textContent = data.results.shop[1].name;
-
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l); 
-  l.textContent = 'アクセス:'+data.results.shop[1].access;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l); 
-  l.textContent = '住所:'+data.results.shop[1].address;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '予算:'+data.results.shop[1].budget.name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'キャッチコピー:'+data.results.shop[1].catch;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'ジャンル:'+data.results.shop[1].genre.name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '営業時間:'+data.results.shop[1].open;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = '最寄駅:'+data.results.shop[1].station_name;
-  l = document.createElement('li'); 
-  u.insertAdjacentElement('beforeend',l);
-  l.textContent = 'サブジャンル:'+data.results.shop[1].sub_genre.name;
+    let l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l); 
+    l.textContent = 'アクセス:'+n.access;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l); 
+    l.textContent = '住所:'+n.address;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = '予算:'+n.budget.name;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = 'キャッチコピー:'+n.catch;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = 'ジャンル:'+n.genre.name;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = '営業時間:'+n.open;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = '最寄駅:'+n.station_name;
+    l = document.createElement('li'); 
+    u.insertAdjacentElement('beforeend',l);
+    l.textContent = 'サブジャンル:'+n.sub_genre.name;
+  }
 }
 
 // 課題6-1 のイベントハンドラ登録処理は以下に記述
-
-
+let b = document.querySelector('button#kensaku');
+b.addEventListener('click',sendRequest);
 
 
 // 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
-
+  let genre1 = document.querySelector('input[name="key"]');
+  let genre = genre1.value;
+  let url = 'https://www.nishita-lab.org/web-contents/jsons/hotpepper/'+genre+'.json';
+  axios.get(url)
+  .then(showResult)
+  .catch(showError)
+  .then(finish);
 }
 
 // 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
+  let data = resp.data;
 
+  if (typeof data === 'stirng') {
+    data = JSON.parse(data);
+  }
+  printDom(data);
 }
 
 // 課題6-1: 通信エラーが発生した時の処理

@@ -6,6 +6,10 @@ h2 {
     padding: 0px 0px 0px 10px;
 }
 
+h2#result {
+    background-color: rgb(76, 147, 4);
+}
+
 ul {
     background-color: bisque;
     margin: 0;
