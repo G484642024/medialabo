@@ -39,7 +39,7 @@ function printDom(data) {
   for (let n of com) {
     let d = document.createElement('div');
     d.setAttribute('id','result');  
-    let h = document.querySelector('h2'); 
+    let h = document.querySelector('h2#result'); 
     h.insertAdjacentElement('afterend',d);
     
     u = document.createElement('ul'); 

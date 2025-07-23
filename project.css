@@ -23,7 +23,7 @@ ul {
 
 div#result {
     display: grid;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 div#result > div {
