@@ -12,6 +12,10 @@ h2#result {
     background-color: rgb(76, 147, 4);
 }
 
+h2#keyword {
+    background-color: beige;
+}
+
 ul {
     background-color: bisque;
     margin: 0;
