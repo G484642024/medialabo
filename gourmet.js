@@ -70,9 +70,12 @@ function printDom(data) {
     l = document.createElement('li'); 
     u.insertAdjacentElement('beforeend',l);
     l.textContent = '最寄駅:'+n.station_name;
-    l = document.createElement('li'); 
-    u.insertAdjacentElement('beforeend',l);
-    l.textContent = 'サブジャンル:'+n.sub_genre.name;
+
+    if (n.sub_genre !== undefined) {
+      l = document.createElement('li'); 
+      u.insertAdjacentElement('beforeend',l);
+      l.textContent = 'サブジャンル:'+n.sub_genre.name;
+    }
   }
 }
 
